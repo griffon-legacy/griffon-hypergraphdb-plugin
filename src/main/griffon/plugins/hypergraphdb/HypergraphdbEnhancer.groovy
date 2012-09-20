@@ -27,7 +27,7 @@ final class HypergraphdbEnhancer {
     private static final Logger LOG = LoggerFactory.getLogger(HypergraphdbEnhancer)
 
     private HypergraphdbEnhancer() {}
-    
+
     static void enhance(MetaClass mc, HypergraphdbProvider provider = HyperGraphHolder.instance) {
         if(LOG.debugEnabled) LOG.debug("Enhancing $mc with $provider")
         mc.withHyperGraph = {Closure closure ->

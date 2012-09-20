@@ -19,9 +19,9 @@
  */
 class HypergraphdbGriffonPlugin {
     // the plugin version
-    String version = '0.1'
+    String version = '0.2'
     // the version or versions of Griffon the plugin is designed for
-    String griffonVersion = '0.9.5 > *'
+    String griffonVersion = '1.1.0 > *'
     // the other plugins this plugin depends on
     Map dependsOn = [:]
     // resources that are included in plugin packaging
@@ -63,19 +63,20 @@ giving you access to an `org.hypergraphdb.HyperGraph` object, with which you'll 
 to make calls to the database. Remember to make all database calls off the EDT
 otherwise your application may appear unresponsive when doing long computations
 inside the EDT.
+
 This method is aware of multiple databases. If no database name is specified when calling
 it then the default database will be selected. Here are two example usages, the first
 queries against the default database while the second queries a database whose name has
 been configured as 'internal'
 
-	package sample
-	class SampleController {
-	    def queryAllDataDatabases = {
-	        withHyperGraph { databaseName, proxy -> ... }
-	        withHyperGraph('internal') { databaseName, proxy -> ... }
-	    }
-	}
-	
+    package sample
+    class SampleController {
+        def queryAllDataDatabases = {
+            withHyperGraph { databaseName, proxy -> ... }
+            withHyperGraph('internal') { databaseName, proxy -> ... }
+        }
+    }
+    
 This method is also accessible to any component through the singleton `griffon.plugins.hypergraphdb.HypergraphdbConnector`.
 You can inject these methods to non-artifacts via metaclasses. Simply grab hold of a particular metaclass and call
 `HypergraphdbEnhancer.enhance(metaClassInstance, hypergraphdbProviderInstance)`.
@@ -105,11 +106,11 @@ implies this is the database used by default, however you can configure named da
 by adding a new config block. For example connecting to a database whose name is 'internal'
 can be done in this way
 
-	databases {
-	    internal {
-		    location = '/path/to/database'
-		}
-	}
+    databases {
+        internal {
+            location = '/path/to/database'
+        }
+    }
 
 This block can be used inside the `environments()` block in the same way as the
 default database block is used.
@@ -137,9 +138,9 @@ fails regardless of the arguments it receives
 
     class MyHypergraphdbProvider implements HypergraphdbProvider {
         Object withHyperGraph(String databaseName = 'default', Closure closure) { null }
-        public <T> T withHyperGraph(String databaseName = 'default', CallableWithArgs<T> callable) { null }       
+        public <T> T withHyperGraph(String databaseName = 'default', CallableWithArgs<T> callable) { null }
     }
-    
+
 This implementation may be used in the following way
 
     class MyServiceTests extends GriffonUnitTestCase {

@@ -37,7 +37,7 @@ class HypergraphdbGriffonAddon {
         }
     }
 
-    def events = [
+    Map events = [
         ShutdownStart: { app ->
             ConfigObject config = HypergraphdbConnector.instance.createConfig(app)
             HypergraphdbConnector.instance.disconnect(app, config)

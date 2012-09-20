@@ -47,7 +47,7 @@ class HyperGraphHolder implements HypergraphdbProvider {
 
     void setHyperGraph(String databaseName = 'default', HyperGraph database) {
         if(isBlank(databaseName)) databaseName = 'default'
-        storeHyperGraph(databaseName, database)       
+        storeHyperGraph(databaseName, database)
     }
 
     Object withHyperGraph(String databaseName = 'default', Closure closure) {
@@ -70,7 +70,7 @@ class HyperGraphHolder implements HypergraphdbProvider {
     
     void disconnectHyperGraph(String databaseName) {
         if(isBlank(databaseName)) databaseName = 'default'
-        storeHyperGraph(databaseName, null)        
+        storeHyperGraph(databaseName, null)
     }
 
     private HyperGraph fetchHyperGraph(String databaseName) {
